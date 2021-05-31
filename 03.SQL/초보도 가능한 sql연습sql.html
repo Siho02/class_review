@@ -1,0 +1,123 @@
+<html>
+<header>
+<title>초보자도 할 수 있는 SQL></title>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<style>
+body {font-family: 'Nanum Gothic', sans-serif;}
+h1 {margin : 1rem;}
+details {padding : 1rem; white-space: pre-wrap;}
+.question {margin : 2rem; padding : 1rem; border: 1px solid gray;}
+</style>
+</header>
+
+<body>
+
+<h2>[초보자도 할 수 있는 SQL - 정주영A & 조태익]</h2>
+
+<div class='question' id='Q1'>
+
+      <h4>1. employees 테이블의 phone_number는 내선번호를 의미한다. 내선 번호가 515.123.xxxx인 부서의 아이디를 검색하고자 할 때 적절한 sql 쿼리를 작성하여라.</h4>
+      	
+
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> first_name, last_name, department_id 
+            <strong>from</strong> employees
+            <strong>where</strong> <strong>substr(</strong> phone_number, 1, 7<strong>)</strong> = '515.123';
+
+            FIRST_NAME  LAST_NAME    DEPARTMENT_ID
+            ---------------- ------------------ -------------------
+            Steven             King                90
+            Neena             Kochhar          90
+            Lex                  De Haan          90
+            Jennifer          Whalen           10
+            Michael          Hartstein         20
+            Susan             Mavris             40
+            Hermann       Baer                 70
+            Shelley           Higgins            110
+            William          Gietz                110
+      </details>
+
+</div>
+
+
+<div class=question id=Q2>
+
+      <h4>2. job_history 테이블에서 업무 종료일자(end_date)가 06년 이전인 데이터 중 부서코드(department_ID), 시작일(start_date), 종료일(end_date)를 출력하시오.</h4>
+            <details><summary>모범 답안</summary>
+            <strong>select</strong> department_id, start_date, end_date
+            <strong>from</strong> job_history
+            <strong>where</strong> end_date < '06/01/01'; 
+
+            DEPARTMENT_ID   START_DATE END_DATE
+            ----------------------- ----------------- --------------
+            110                         97/09/21      01/10/27
+            110                         01/10/28      05/03/15
+            90                           95/09/17      01/06/17
+
+</details>
+</div>
+
+<div class='question' id='Q3'>
+
+      <h4>3. locations 테이블에서 알파벳 s(대소문자 구별 없이)가 포함된 거리 주소(street_address), 우편번호(postal_code), 도시(city)를 출력하시오.</h4>
+      
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> street_address, postal_code, city 
+            <strong>from</strong> location
+            <strong>where</strong> <strong>where</strong> city <strong>like</strong>'%S%' <strong>or</strong> city <strong>like</strong> '%s%';
+
+            STREET_ADDRESS                                                     POSTAL_CODE           CITY
+            -------------------------------------------------------------- ------------------------ ----------------------------
+            9450 Kamiya-cho                                                    6823                         Hiroshima
+            2014 Jabberwocky Rd                                            26192                       Southlake
+            2011 Interiors Blvd                                                  99236                      South San Francisco
+            2007 Zagora St                                                        50090                      South Brunswick
+            2004 Charade Rd                                                    98199                      Seattle
+            6092 Boxwood St                                                   YSW 9T2                  Whitehorse
+            12-98 Victoria Street                                              2901                         Sydney
+            198 Clementi North                                                540198                    Singapore
+            9702 Chester Road                                                 09629850293         Stretford
+            Rua Frei Caneca 1360                                             01307-002              Sao Paulo
+      </details>
+
+</div>
+
+<div class=question id=Q4>
+      <h4>4. 직무(jobs) 테이블에서 최소 월급이 3000 미만인 직무의 최소 월급을 10% 인상 시키려 한다. 직무(job_title), 최소 월급(min_salary), 인상 후 월급(chage_sal 로 명명한다)를 출력하시오.</h4>
+      	
+
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> job_title, min_salary, min_salary*1.1 as chagne_sal
+            <strong>from</strong> jobs
+            <strong>where</strong> min_salary < 3000 ;
+
+            JOB_TITLE               MIN_SALARY     CHAGNE_SAL
+            ---------------------- --------------------- -----------------
+            Purchasing Clerk       2500                2750
+            Stock Clerk               2008                 2208.8
+            Shipping Clerk          2500                2750                                            110
+      </details> 
+</div>
+
+<div class='question' id='Q5'>
+
+      <h4>5. 오늘을 기준으로 근속 년수가 20년 이상인 사원의 이름(first_name), 성(last_name), 월급(salary)를 출력하시오. </h4>
+      
+      <details>
+            <summary>모범 답안</summary>
+            <strong>select</strong> last_name, first_name, salary 
+            <strong>from</strong> employees
+            <strong>where</strong> trunc(months_between(sysdate, hire_date) / 12, 0) >= 20;
+
+            LAST_NAME                      FIRST_NAME     SALARY
+            -------------------------------- -------------------- -------------
+            De Haan                             Lex                     17000
+      </details>
+
+</div>
+
+</body>
+</html>
