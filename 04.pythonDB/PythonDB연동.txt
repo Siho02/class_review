@@ -1,0 +1,129 @@
+DB연동
+
+--DAY 1--
+1. 실습 준비
+    1. db설치 및 실행중
+
+    2. python 개발 환경 구축
+        anaconda 설치
+        접속 db에 종속적인 driver 설치(*)
+            db별로 다름
+            db벤더사가 제공
+
+    3. pyhon 코드로 db 연동 확인
+
+
+
+2. 설치 명령어
+    * cx_Oracle 이라는 이름(모듈 또는 package)
+
+    1. python 연동 oracle driver 설치 여부 확인
+        >pip list   or       >conda list 
+
+    2. 설치
+        >pip install cx_Oracle  or
+        >conda install cx_Oracle
+
+
+3. python기반의 db연동 개발 단계
+    1단계 : oracle 접속
+        db의 ip / id / pw / 개별DB별 별칭(database service name(dns)) / port
+        로컬 시스템에서 축약된 표현 : id/pw/dns
+            SCOTT/TIGER/XE
+            hr/hr/XE
+    
+    2단계 
+        접속된 db에 sql문장 실행
+
+    3단계
+        실행된 sql문장 결과값을 활용
+
+    4단계
+        사용했던 자원들 반납(개발자가 반납 하는 로직 생략 불가)
+        
+        모든 user들이 기본적으로 지켜야 할 메너(로그아웃 필수)
+        자원 반납 안 할 경우엔 사용 안 하는 db접속 기능의 객체들이 쓰레기인 상태로 메모리에 잔존
+        시스템 자원 절약 측면에서 불필요한 리소스 낭비
+
+
+4. python 특징
+    python 내부적으로 모든 타입을 객체 타입으로 관리
+    객체 - 데이터와 기능을 보유한 구조
+           대표적인 예시   
+                학사 관리 프로그램
+                    교수/학생/행정직 ...다양한 서비스 로직 존제
+                    어떤 교수가 무슨 과목을 몇명의 학생들에게..
+                    어떤 학생이 몇명의 교수로 부터 몇개의 과목을 수강?...
+
+                    학생의 정보 관리
+                        class Student:
+                            def __init__(self, 이름, 학번, 학년):
+                                ...
+
+                        class 교수:
+                            def __init__(self, 이름, 나이, 과목):
+                                ...                             
+
+5. 실습 확장 단계
+    DDL & CRUD 로직별로 함수를 별도로 구현
+    C : create / R : select / U : update / D : delete
+
+6. 개발시 고려 사항
+    driver 로딩 - import 문장
+
+    connection 객체 생성 - 다수의 user가 공유 금지
+    sql문장 실행 가능한 cursor생성
+    sql문장 실행
+    데이터 활용
+    자원 반환 - skip 불가
+
+    - 전역 : 함수와 독립적으로 개별 구현 가능(모든 함수들이 공유 하는 것)
+
+
+--DAY 2--
+**실습단계**
+    1단계 : CRUD 구현된 함수는 별도의 모듈로 개발 & CRUD 모듈을 사용하는 또 다른 파일 개발 
+        - 2개 이상의 py 파일 생성
+        - 예시 
+            - 서점 사이트 
+                -책 정보(Book class, book_info.py) : 제목 / 저자 / 출판사 / 가격 등 각 데이터들을 가공하는 메소드
+                -출판사 정보
+                -고객 정보
+    2단계 : oracle을 기반으로 존재하는 table의 데이터 값을 명확하게 구분하면서 사용 가능한 구조의 클래스
+            클래스 >> 데이터 메모리에 저장(객체 생성, instance)
+            >> 다수의 row값들을 활용시에는 다수의 객체 생성
+            
+            예시 : 버튼 클릭시 모든 고객 정보를 볼 수 있는 화면 구성
+                - 버튼 : html로 구현
+                - 클릭 시 서버에 요청 : java script & 비동기 메커니즘 적용 구현
+                    버튼 클릭을 통해 서버에 실제 요청 전송
+                - 서버 관점에서 요청 받음 : python 기반의 http 통신 처리 기술인 flask
+                    Rest API & Swagger doc(개발한 소스 사용 매뉴얼을 브라우저에 설명서 제공 & 사용 방법 & 시연 화면 제공)
+    
+    3단계 : MVC pattern
+            - 정형화된 모든 프로그램 언어, 언어에 관계 없이 권장하는 구조
+            - 코드 분업 구조
+            - MVC에서 파생된 새로운 구조들 다수
+            - 좋은 가독성 유지 / 유지 보수를 원할하게 하기 위한 필수 스펙
+            - 참고
+                - 대기업 / 중견기업 등 사내 framework(표준화된 솔루션, 강제성 있는 동일한 구조)
+                - python : django framework / java : spring framework  
+
+**MVC pattern**
+    1. M : model
+        - 서비스 로직의 핵심 기능 / business logic / biz logic / core
+        - 실제 데이터를 조작하는 기능
+        - 구현 단계 : db와 실제 소통하는 파트..
+        - back end : python / java / c#
+    2. V : view
+        - 화면 담당 / presentation logic 
+        - front end : html / css / java script 
+    3. C : controller
+        - View로부터 요청 받아서 Model에게 업무 수행 처리 실행시키는 중재자, 조절자 기능의 로직
+
+**IT언어**
+    1. value object(VO) = data transfer object(DTO)
+        - 데이터를 표현하는 구조의 클래스
+        - model 핵심 로직에서 생성하여 view인 화면 출력 로직에게 client에게 출력하게끔 전송하는 구조
+    2. Data Access Object(DAO)
+        - sql 문장을 활용하면서 실제 db와 소통을 전담하는 로직의 클래스를 의미
