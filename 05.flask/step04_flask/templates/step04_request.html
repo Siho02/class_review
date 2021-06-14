@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>HTML Forms</h2>
+
+    <!-- http://ip:port/login 으로 요청하는 설정
+        id/pw값을 서버에 post 방식으로 요청하면서 전송
+
+        get요청인 경우 : http://127.0.0.1:5000/login?id=%EC%9C%A0%EC%9E%AC%EC%84%9D%22&pw=11
+        post요청인 경우 : http://127.0.0.1:5000/
+            id/pw가 서버단에 
+    -->
+    <form action="login", method="post">
+        <label>id:First name:</label><br>
+        <input type="text" id="id" name="id" value="taeik"><br>
+        
+        <label>pw:</label><br>
+        <input type="password" id="pw" name="pw" value="11"><br><br>
+        
+        <!-- form의 action 속성에 설정된 실제 서버에 데이터를 전송하는 기능의 tag-->
+        <input type="submit" value="Log In">
+    </form>         
+</body>
+</html>
+
+<!--주의 사항 
+http://ip:port/templates/step04_request.html 요청시 정상 실행 불가
+
+해결법 :
+    - flask 앱을 통해서 step04_request.html 실행해야 함
+
+-->
