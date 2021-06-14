@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- error 발새 사유 : 
+            현 로직 상에서는 이미 브라우저가 실행(loading / 렌더링) 된 즉 존재하는 tag(element)를 사용 가능하게
+            메모리에 존재하는 상태에서 btn이라는 id로 찾아서 tag를 찾아 client시에 수행되는 동작을 등록
+
+            문제는 btn id값을 보유한 tag가 브라우저에 만들어지지 않은 상태에서 사용하려 호출하기 때문에
+            미존재 즉 "Uncaught TypeError: Cannot read property 'addEventListener' of null" 에러 메시지 발생
+    <script>
+        document.getElementById("btn").addEventListener("click", function(){
+            alert("cho taeik");
+        });
+    </script>
+    -->
+</head>
+<body>
+    <button onclick="alert('클릭 되었네오')">button1</button>
+    <br>
+    <button id='btn'>button2</button>
+    <script>
+        /* 익명함수 개발~(이름이 없는 함수) 
+        이름으로 함수 구분 불가 >> 재사용성을 고려하지 않은 특정 로직에서만 필요한 경우에 선호하는 문법
+        두번째 버튼에만 종속적으로 이벤트 처리*/
+        /*  다수의 tag 중 특정 tag에만 이벤트 등록(click? 마우스 움직임, 포커스 이동?)
+            등록된 시점에 실행되는 특별한 기능(이벤트 처리하는 기능)
+            
+            버튼 클릭시에 이름 출력
+        */
+        
+        
+        document.getElementById("btn").addEventListener("click", function(){
+            alert("cho taeik");
+        });
+        
+    </script>
+</body>
+</html>

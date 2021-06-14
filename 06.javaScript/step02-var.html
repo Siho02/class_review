@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // step01 - js의 변수 선언시의 특징에 따른 학습
+        
+        // step02 - var / let / const 차이점 비교
+        /* 함수 내부의 조건식에서 변수들 선언 후에 조건식 블록을 벗어나 출력*/
+        function myfunc3(){
+            if (2==2) {
+                var v2 = 2;     //함수 내부의 어디에 선언 되어 있던 함수 내부에서 사용 가능
+                let v3 = 3;     //let으로 선언된 변수는 선언된 블록 내부에서만 호출 가능
+                const v4 = 4;   //한번 대입된 값은 절대 변경 불가
+                //v4 = 10;        //const변수를 다시 assign하려 했기 때문에 오류 떨어짐
+            }
+            console.log(v2);
+            //console.log(v3);    //let으로 선언된 변수는 block scope 즉 선언된 {}내에서만 사용 가능  
+            console.log(v4);
+        }
+
+        myfunc3();
+
+        // 사용자 정의 함수 구현 문법
+        function myfunc(){
+            v1 = 1;         //전역 변수로 선언, 다른 영역에서도 호출 가능
+            var v2 = 2;     //로컬 변수로 선언, 이 함수 외부에서는 호출 불가
+            let v3 = '3';
+            const v4 = 4;
+
+            console.log(v1);
+        }//실행시 v2, v3, v4는 소멸
+
+        //(비교를 위해 주석 지워서도 해볼 것)myfunc(); //구현된 함수를 호출
+
+        // 새로운 함수를 구현 - myfunc()에서 이미 선언된 변수를 호출
+        function myfunc2(){
+            console.log(v1);    //myfunc()에서 선언된 변수 사용 가능
+            //console.log(v2);  myfunc()에서 선언된 변수는 사용 불가
+            //console.log(v3);  myfunc()에서 선언된 변수는 사용 불가
+            //console.log(v4);  myfunc()에서 선언된 변수는 사용 불가
+        }
+
+        //(비교를 위해 주석 지워서도 해볼 것) myfunc2();
+    </script>
+</body>
+</html>
+
+<!-- 학습내용
+1. 사용자 정의 단순 함수 구현 문법
+2. var / let / const 키워드 구분
+    let / const는 선언된 block scope 내에서만 사용 가능한 견고한 키워드
+    const : 상수
+    구글은 수정 가능성이 없는 변수들은 const 사용 권장, 브라우저에서 실행되는 속도가 빠름
+-->
