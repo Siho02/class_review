@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        1. google에서 chart개발 가능한 library 제공
+        2. 사용자인 개발자들은 매우 쉬운 방식으로 chart그리기 가능
+    -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    function draw(){
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['잠',     11],
+            ['식사',      2],
+            ['박스 탐닉',  2],
+            ['바깥 구경', 2],
+            ['집사 골탕먹이기',    7]
+          ]);
+
+          var options = {
+          title: '냥냥 펀치'
+          };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    }
+      
+    </script>
+  </head>
+
+<body>
+    <h3>구글 차트 만들고 응용</h3>
+    <br><hr><br>
+    <button onclick="draw()">view chart</button>
+    <br><hr><br>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

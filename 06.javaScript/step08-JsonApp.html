@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>json 포맷 데이터를 form input tag에 출력하기</h3>
+    
+    firstName : <input type="text" id="id1"><br>
+    lastNmae : <input type="text" id="id2"><br>
+    id : <input type="text" id="id3"><br>
+    
+    <br><hr><br>    
+    아이디 : <input type="text" id="pid"><br>
+    이름 : <input type="text" id="pname"><br>
+
+    <!-- this는 포함된 tag(element) 자신을 의미 
+    html tag / text들 모두 다 객체로 관리
+    this는 타언어와 동일하게 해당 객체 자신을 의미하는 표현법
+    python 에서는 self와 동일-->
+
+    <!-- 응용 step01 단계-->
+    <button value="1" onclick="print_data(this.value)">1</button> 
+    <button value="2" onclick="print_data(this.value)">2</button> 
+    <button value="3" onclick="print_data(this.value)">3</button> 
+    <button value="4" onclick="print_data(this.value)">4</button>
+
+    <!-- 응용 step02 단계-->
+    <br><hr><br>
+    <button value="p1" onclick="print_data2(this.value)">1</button> 
+    <button value="p2" onclick="print_data2(this.value)">2</button> 
+    <button value="p3" onclick="print_data2(this.value)">3</button> 
+    <button value="p4" onclick="print_data2(this.value)">4</button>
+
+    <script>
+        var person = {
+            "firstName" : "John",
+            "lastName" : "Doe",
+            "id"       : 5566
+        };
+        //? person이 참조하는 json객체의 개별 데이터를 각 text field에 출력하기
+        document.getElementById("id1").value = person.firstName;
+        document.getElementById("id2").value = person.lastName;
+        document.getElementById("id3").value = person.id;        
+        
+    
+        function print_data(no){
+            //alert(person_all['p'+no]);
+            //console.log(person_all['p'+no]);
+            document.getElementById("pid").value = person_all['p'+no].id;
+            document.getElementById("pname").value = person_all['p'+no].name;
+        }
+
+        function print_data2(no){
+            //alert(person_all['p'+no]);
+            //console.log(person_all['p'+no]);
+            document.getElementById("pid").value = person_all[no].id;
+            document.getElementById("pname").value = person_all[no].name;
+        }
+
+        let person_all = {
+            "p1" : {
+                "name" : "John",
+                "id"       : 5566
+            },
+
+            "p2" : {
+                "name" : "donn",
+                "id"       : 7896
+            },
+
+            "p3" : {
+                "name" : "Ann",
+                "id"       : 7826
+            },
+
+            "p4" : {
+                "name" : "이지은",
+                "id"       : 746
+            }
+            
+        };
+        let v = 'p'+ 4;         //key를 문자열로 가공
+        console.log(person_all[v]); //문자열인 key를 사용하는 브랫킷 연산자
+    </script>
+</body>
+</html>

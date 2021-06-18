@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>배열(array) 다수의 data값들을 하나의 변수로 관리 가능한 구조</h3>
+    1. 데이터 구분을 위해서 index 값으로 구분 <br>
+    2. <a href = "https://www.w3schools.com/js/js_arrays.asp">JS arrays</a><br>
+    3. <a href = "https://www.w3schools.com/js/js_array_methods.asp">JS array methods</a><br>
+    <hr><br>
+
+    <script>
+        let a1 = [1,2,3,4]
+        console.log(typeof(a1));
+        console.log(a1[2]);
+        a1.push(5);
+        console.log(a1);
+
+        let a2 = [[1,2], [3,4]];
+        console.log(a2);
+        console.log(a2[1][0]);
+
+        console.log("-------------------");
+        for (v in a1){
+            console.log(v); ///index가 출력?
+        }
+
+        for (v in a1){
+            console.log(a1[v]);
+        }
+    </script>
+</body>
+</html>

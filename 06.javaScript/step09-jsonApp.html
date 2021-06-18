@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>이름 입력하면 id가 출력되는 동적 page</h3>
+
+    1. 이벤트 발생 시점 정하기 : 포커스 이동<br>
+    2. 다수의 이름값 비교 방법 고민 : == <br>
+    3. 이름 비교로 선별한 id값 출력코드 고민<br>
+
+    <br><hr><br>
+
+    아이디 : <input type="text" id="pid"><br>
+    <!-- onblur : 포인터가 이동하는 것을 감지하는 이벤트 감지기 속성-->
+    이름 : <input type="text" id="pname" onblur="id_print(this.value)"><br>
+
+    <script>
+        /*
+        function id_print(name){
+           // console.log(name == "이지은");
+           for (p in person_all){
+               //if (person_all[p].name == "이지은")
+               console.log(p);
+               console.log(person_all[p]);
+               console.log(person_all[p].id);
+               console.log("--------")
+               //}
+           }
+        }
+        */
+
+        function id_print(name){
+            for(p in person_all){
+                if(person_all[p].name == name){
+                  document.getElementById("pid").value = person_all[p].id;
+                }
+            }
+        }
+
+        function id_print2(name){
+            /*person_all이 참조하는 모든 데이터의 키 만을 뽑아 person_all이 참조하는 데이터의 id값만 반복해서 뽑음
+            반복적으로 pid라는 id값인 tag의 value 속성에 값 대입, 로직상 브라우저에 출력*/
+            for(p in person_all){
+                if(person_all[p].name == name){
+                  document.getElementById("pid").value = person_all[p].id;
+                }
+            }
+        }
+
+        let person_all = {
+            "p1" : {
+                "name" : "John",
+                "id"       : 5566
+            },
+
+            "p2" : {
+                "name" : "donn",
+                "id"       : 7896
+            },
+
+            "p3" : {
+                "name" : "Ann",
+                "id"       : 7826
+            },
+
+            "p4" : {
+                "name" : "이지은",
+                "id"       : 746
+            }
+        };
+    </script>
+</body>
+</html>

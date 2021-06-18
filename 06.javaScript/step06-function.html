@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>js 함수 구현 문법</h3>
+
+    <a href = "https://poiemaweb.com/js-function#71-%EC%A6%89%EC%8B%9C-%EC%8B%A4%ED%96%89-%ED%95%A8%EC%88%98">
+        즉시 실행함수 syntax></a>
+
+
+    <script>
+        //함수 기본 문법
+        function fun1(){
+            return "일반 문법";
+        }
+        console.log(fun1());
+
+        //익명 함수를 funvar2 변수에 대입 문법
+        //funvar2 변수는 함수 자체를 하나의 식으로 인지
+        //리터럴 보유하는 변수
+        /*리터럴? 
+        사람이 이해할 수 있는 문자 또는 약속된 기호를 사용하여 
+        표현 및 값을 생성하는 표기법 / 문자열처럼 간주 */
+        let funvar2 = function(){
+            return "이름 없는 함수(익명함수)";
+        }
+        console.log(funvar2());
+
+        let funvar3 = function(v){
+            return "이름 없는 함수(익명함수)" + v;
+        }
+        console.log(funvar3("대박!"));
+
+        //3. 화살표 함수(python의 lambda 함수와 비슷)
+        let funvar4 = (v) => "화살표 함수" + v;
+        console.log(funvar4(" 신기함"));
+
+        //4. 구현 하자마자 바로 실행하는 즉시 실행 함수
+        // 주 용도 : client로 인한 evevt 없이도 실행 시켜야 하는 로직이 있는 경우 사용
+        (function fun5(name, age){
+            console.log(name, age);
+        }("조태익", 29));
+    </script>
+</body>
+</html>
