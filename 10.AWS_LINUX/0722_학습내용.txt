@@ -1,0 +1,14 @@
+1. linux 기본 명령어
+	1) cygwin
+		- window에서 linux 명령어 학습
+2. aws 제어 명령어 >> linux 기반
+	1) mysql db 생성
+		-생성 및 접속	
+		-emp/dept table 생성 및 데이터 insert 문장은 mysql에 적합하게 제시
+		-w3schools.com
+			-mysql 학습 part 확인
+	2) DBeaver
+		- 다양한 db와 연동가능한 tool
+		- sqlplus(oracle)와 동일한 기능
+	3) aws와 소통을 위해서는 ssh(보안을 강화시킨 통신 규약) 통신
+		- ssh 가능한 sw 필요

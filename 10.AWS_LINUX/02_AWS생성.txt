@@ -1,0 +1,48 @@
+https://mozi.tistory.com/191
+https://ndb796.tistory.com/m/244
+
+[작업 단계]
+
+1. mysql 설정
+    -oracle db 직접
+
+2. flask 설정
+
+    1+2 = 서비스 로직
+        : emp table을 사용했던 기존 소스를 재사용
+        : github에 업로드
+        : aws ec2 인스턴스에 배포
+
+3. ELK
+
+==========================================================
+
+[1] RDS 구축
+    1. mysql 생성
+    2. 퍼블릭 접속 가능하게 수정
+    3. TCP 즉 인터넷 상에서 client와 server가 통신하는 규칙의 port인 3306 등록
+    4. DBeaver에 mysql 접속 설정
+        - endpoint, port, id, pw로 접속
+    5. playdata라는 database 생성
+        - table 생성 및 데이터 insert, commit
+
+[2] flask db연동 코드 재사용
+    1. 로컬 시스템 오라클 접속을 aws 원격 시스템 활용으로 코드 수정
+    2. 직접 수행
+
+[3] AWS EC2에 flask 실행 환경 구축(서비스 배포)
+    1. end user들이 인터넷 상에서 aws 서버에 접속하고 flask가 서비스 되게 하는 구조
+    
+    2. 작업 단계 실행 process
+        - aws에 os 설치
+        - os에 python 개발 환경 구축
+        - flask 라이브러리 설정
+        - 개발한 소스를 aws의 해당 server에 배포
+        - 실행
+        - end user인 client가 브라우저로 접속 및 서비스 요청 / 응답 수행 가능
+    
+    3. 실제 aws에 셋팅 작업
+        - key를 로컬 시스템에 다운로드
+            - 권한 부여 
+            - linux에서는 명령어 한줄로 권한 부여
+            - window에선 수작업
