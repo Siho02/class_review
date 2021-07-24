@@ -1,0 +1,86 @@
+cygwin64 terminal
+
+
+[file 관리하는 명령어]
+    {학습 순서}
+        - file 생성 및 데이터 저장
+        - file 이동 및 삭제
+
+    1. 파일 생성
+            - touch file명.확장자
+
+    2. file 내용 보기
+        방법1 : vi 텍스트 편집기 사용
+            $vi test.txt
+            
+            i 입력해서 데이터 insert 명령어 적용
+            
+            대량의 데이터 저장 시도
+            esc >> : wq!
+
+            만일 작업 도중 오류가 발생할 경우
+                - esc 다수 클릭 & ctrl+C >> :q!
+
+        방법2 : 단순 확인
+            $cat test.txt
+
+        방법3 : 소량의 데이터를 하나의 명령어로 파일 생성
+            $echo "데이터" > test.txt
+
+        방법4 : 하나의 line씩 이동하며 확인 가능한 명령어
+            $less test.txt
+                방향키 또는 enter로 line 단위로 read
+                
+                파일보기 중지 >> :q
+                : 은 이미 존재 따라서 q만 입력하면 종료
+    
+        방법5 : line 수 지정해서 확인 가능
+            - 첫 다섯줄 검색 : head -n 5 test2.txt
+            - 마지막 다섯줄 검색 : tail -n 5 test2.txt
+
+        방법6 : enter를 통해 다음 내용 확인하기(문서양의 몇%를 봤는지 확인)
+            - 명령어 : $more test2.txt
+            - ctrl + z : 종료
+
+        방법7 : 빈 파일 생성(여러개도 가능)
+            - $touch test3.txt test4.txt
+
+    3. 디렉토리 내용 확인
+        1) 단순 확인
+            $ls (파일과 디렉토리 구분 불가능)
+        2) 사용자가 생성한 내용 확인
+            $ls -l
+        3) linux 자체의 설정 파일까지도 확인
+            $ls -al
+
+    4. file 이동 및 삭제
+        1) 현 디렉토리의 파일을 다른 디렉토리로 이동
+            $mv test.txt encore/
+        2) 현 디렉토리 내용 확인
+            $ls
+        3) 현 경로에서 encore 디렉토리 하위 내용 확인
+            $ls encore/
+        4) 현 경로의 파일 제거
+            $rm test4.txt
+        5) 복사 및 붙여넣기
+            $cp test2.txt poem.txt (test2.txt : 원본 파일, poem.txt : 복제 파일)
+            $cp test2.txt encore/poem.txt
+        6) 파일 내 특정 단어 검색
+            $grep 윤동주 encore/poem.txt
+
+    5. file에 데이터 입력에 따른 명령어 및 키워드
+        1) 사용 기본 프로그램이 vi 편집기
+        2) 필수 키워드
+            파일 오픈해서 새로운 데이터 추가 작업시에 필수인 표현법
+                (1) i - insert의 약자
+                (2) a - append의 약자
+                (3) esc >> :wq! : 수정된 내용 저장
+                (4) esc >> :q! : 수정되었다 하더라도 무시하고 저장 없이 종료
+                (5) DD : 커서가 있는 line의 데이터 삭제 의미
+        
+        3) 발생된 문제 해결?
+            - vi text.text 
+                text.txt 파일 오픈
+            - 입력 시도
+                case : 입력 불가 및 알림
+                해결책 : a or i 입력
