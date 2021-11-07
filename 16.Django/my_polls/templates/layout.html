@@ -1,0 +1,23 @@
+<!--
+    layout 역할을 할 template
+    - 모든 template에 공통적으로 들어갈 내용 작성
+    - 각각의 template들이 자신의 코드들을 넣을 위치를 block 태그를 이용해 지정    
+#}
+--> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}제목{% endblock title %}</title>
+    {% block script %}{% endblock script%}
+</head>
+<body>
+    <a href="{% url 'poll:list' %}">설문 리스트</a>
+    <a href="/admin">관리자 페이지</a>
+    <hr>
+    {% block contents %}{% endblock contents %}
+</body>
+</html>
