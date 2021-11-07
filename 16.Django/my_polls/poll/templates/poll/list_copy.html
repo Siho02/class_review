@@ -1,0 +1,48 @@
+<!--   Template   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>설문 목록</title>
+</head>
+<body>
+    <h1>설문 목록</h1>
+    <!--view.py에 있는걸 뿌려야 하는데 거기서 바로 필요한게 html이 아닌 template-->
+    <!--view에서 전달한 question_list값들을 출력 -->
+    {# 장고 주석 #}
+    {% comment %}
+        장고주석1
+        장고주석2
+    {% endcomment %}
+    {%comment%}
+    {{question_list}} {# question_list의 변수값(View전달한 값)을 list로 출력 #}
+    {%endcomment%}
+    
+    설문 개수 : {{question_list|length}}
+    <ul>
+        {% for question in question_list %}
+
+            <li>
+                <!--/poll/vote_form/question의 id-->
+                <!--
+                    <a href="/poll/vote_form/{{question.pk}}"> 
+                    {{question.pk}}. {{question.question_text}}
+                    </a>    -->
+                {# url "app_name:path명" [path parameter에 넘길 값] #}
+                <a href = "{% url 'poll:vote_form' question.pk %}">
+                    {{question.pk}}. {{question.question_text}}
+                </a>
+                {{question.question_text}} ||
+                {{question.question_text|truncatewords:1}} ||
+                {{question.question_text|truncatechars:10}} ||
+                {{question.pub_date}}||
+                {{question.pub_date|date:'Y-m-d'}}
+            </li>
+        {% empty %}
+            등록된 설문이 없습니다
+        {% endfor%}
+    </ul>
+</body>
+</html>

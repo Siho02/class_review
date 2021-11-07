@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Vote result{% endblock title%}
+{% block contents %}
+<h1>투표 결과</h1>
+<h2>{{question.pk}}. {{question.question_text}}</h2>
+<table width='150'>
+    {% for choice in question.choice_set.all %}
+    <tr>
+        <td>{{choice.choice_text}}</td>
+        <td>{{choice.vote}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock contents%}

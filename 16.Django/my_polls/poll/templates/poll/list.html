@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}설문 목록{% endblock title%}
+{% block contents %}    
+<h1>설문 목록</h1>
+설문 개수 : {{question_list|length}}
+<ul>
+    {% for question in question_list %}
+        <li>
+            <a href = "{% url 'poll:vote_form' question.pk %}">
+                {{question.pk}}. {{question.question_text}}
+            </a>
+        </li>
+    {% empty %}
+        등록된 설문이 없습니다
+    {% endfor%}
+</ul>
+{% endblock contents %}
