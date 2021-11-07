@@ -1,0 +1,18 @@
+- django-admin startproject config .
+- python manage.py createsuperuser
+
+python manage.py startapp board
+    -settings.py 에 생성한 app을 등록(INSTALLED)
+
+- 공통 template파일을 저장할 디렉토리 생성
+    - root/templates
+    - settings.py에 등록(TEMPLATES/DIRS)
+
+- root/templates
+    - layout.html, home.html
+    - config/urls.py home.html url 매핑설정
+
+1. board/model.py
+
+    #1개의 게시물 조회
+    http:/127.0.0.1:8000/board/detail/pk - view : DetailView 사용 / template : board/post_detail.html 
